@@ -1,11 +1,16 @@
 import React from "react";
 import Link from "next/link";
-import MyButton from "../components/Button";
+import useSWR from "swr";
+// import MyButton from "../components/Button";
+
+// esta função observa o focus na janela
+const fetcher = (...args) => fetch(...args).then((res) => res.json());
 
 const Index = () => {
+  const { data, error } = useSWR("/api/get-promo", fetcher);
+
   return (
     <div>
-      
       <p className="text-center mt-8 mb-8 ">
         O restaurante X sempre busca por atender melhor seus clientes. <br />
         Por isso, estamos sempre abertos a ouvir a sua opinião
@@ -30,10 +35,14 @@ const Index = () => {
             Dar opinião ou sugestão
           </Link>
         </div>
-        <p className="text-center mt-8 mb-8 ">Mensagem do desconto</p>
+        <div className="text-center">{!data && <p>Carregando...</p>}</div>
+        <div className="text-center">
+          {!error && data && data.showCoupon && (
+            <p className="text-center mt-8 mb-8 ">{data.message}</p>
+          )}
+        </div>
       </div>
     </div>
   );
-};
-
+}; 
 export default Index;
