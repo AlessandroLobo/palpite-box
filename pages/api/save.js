@@ -1,6 +1,6 @@
 import { GoogleSpreadsheet } from "google-spreadsheet";
 
-import credentials from "../../credentials.json";
+
 import moment from "moment/moment";
 
 const doc = new GoogleSpreadsheet(
