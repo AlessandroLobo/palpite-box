@@ -1,3 +1,10 @@
 {
-    "cSpell.language": "en,pt-BR"
+    "cSpell.language": "en,pt-BR",
+    "files.autoSave": "afterDelay",
+    "files.autoSaveDelay": 2500,
+    "editor.formatOnPaste": true,
+    "editor.formatOnSave": true,
+    "editor.tabSize": 4,
+    "editor.indentSize": 4 
+    
 }

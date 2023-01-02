@@ -9,8 +9,8 @@ const doc = new GoogleSpreadsheet(
 
 const genCupom = () => {
   const code = parseInt(moment().format("YYMMDDhmmssSSS"))
-                                .toString(16)
-                                .toLocaleUpperCase();
+    .toString(16)
+    .toLocaleUpperCase();
   return code.substr(0, 4) + "-" + code.substr(4, 4) + "-" + code.substr(8, 4);
 };
 
@@ -31,7 +31,6 @@ export default async (req, res) => {
     let Promo = "";
 
     if (mostrarPromocaoCell.value === "VERDADEIRO") {
-      
       Cupom = genCupom();
       Promo = textoCell.value;
     }
@@ -41,19 +40,20 @@ export default async (req, res) => {
       Nome: data.Nome,
       Email: data.Email,
       Whatsapp: data.Whatsapp,
-      Nota: 5,
+      Nota: parseInt(data.Nota),
       "Data Preenchimento": new moment().format("DD/MM/YYYY, h:mm:ss a"),
       Cupom,
       Promo,
     });
-    res.end(JSON.stringify({
-      showCupon: Cupom !== '',
-      Cupom,
-      Promo
-    }));
+    res.end(
+      JSON.stringify({
+        showCupon: Cupom !== "",
+        Cupom,
+        Promo,
+      })
+    );
   } catch (err) {
     console.log(err);
     res.end("error");
   }
 };
-
