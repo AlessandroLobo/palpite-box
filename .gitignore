@@ -2,3 +2,5 @@ node_modules
 credentials.json
 .env.local
 .next
+base
+test
